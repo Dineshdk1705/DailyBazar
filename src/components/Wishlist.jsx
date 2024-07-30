@@ -1,8 +1,8 @@
 import React from "react";
-import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromWishlist } from "../store/slices/wishlistSlice";
 import { addCartItem, removeCartItem } from "../store/slices/cartSlice";
+import { MdDelete } from "react-icons/md";
 
 const Wishlist = () => {
   const wishlistItem = useSelector((state) => state.wishlistItem.wishlistItems);
@@ -52,7 +52,7 @@ const Wishlist = () => {
                     onClick={() => dispatch(removeFromWishlist(item?.id))}
                     className="ml-4 text-red-500"
                   >
-                    <AiOutlineClose size={16} color="red" />
+                    <MdDelete size={16} color="red" />
                   </button>
                 </td>
                 <td className="p-2 md:border-b md:border-grey-500 text-left block md:table-cell">
@@ -65,7 +65,7 @@ const Wishlist = () => {
                 </td>
                 <td className="p-2 md:border-b md:border-grey-500  text-left block md:table-cell">
                   {/* <span className="line-through">{item.price}</span>{" "} */}
-                  <span className="">${item.price}</span>
+                  <span className="">₹{item.price}</span>
                 </td>
                 <td className="p-2 md:border-b md:border-grey-500 text-left block md:table-cell">
                   In Stock

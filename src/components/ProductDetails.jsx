@@ -127,7 +127,7 @@ const ProductDetails = () => {
         <div className="w-full md:w-1/2 md:ml-8 mt-8 md:mt-0">
           <h1 className="text-3xl font-bold">{details?.title}</h1>
           <p className="text-sm text-gray-500 my-5">{details?.description}</p>
-          <p className="text-2xl font-semibold mt-4">${details?.price}</p>
+          <p className="text-2xl font-semibold mt-4">₹{details?.price}</p>
           <p className="text-sm text-gray-500">inclusive of all taxes</p>
           <div className="flex items-center justify-start mt-4 space-x-2">
             <div className="w-[30%] flex gap-3 items-center justify-between border-[1px] border-gray-200">
