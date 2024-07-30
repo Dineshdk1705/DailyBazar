@@ -4,6 +4,7 @@
 
 body {
   @apply font-roboto;
+  @apply bg-gray-50;
 }
 
 /* body {

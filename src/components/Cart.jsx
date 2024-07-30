@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decreaseQuantity,
@@ -12,6 +12,10 @@ const Cart = () => {
   const [discount, setDiscount] = useState(0);
   const cartItem = useSelector((state) => state.cartItem.cartItems);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleApplyPromoCode = () => {
     // Implement promo code logic here
@@ -82,7 +86,7 @@ const Cart = () => {
                     </div>
                     <div className="flex items-center space-x-4 mt-2 md:mt-0">
                       <span className="text-lg">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        ₹{(item.price * item.quantity).toFixed(2)}
                       </span>
                       <button
                         onClick={() => dispatch(removeCartItem(item?.id))}

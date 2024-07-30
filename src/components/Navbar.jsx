@@ -81,7 +81,11 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className={`${isMobileMenuOpen ? "block" : "hidden"} md:hidden p-4`}>
+      <div
+        className={`${
+          isMobileMenuOpen ? "max-h-screen p-2" : "max-h-0"
+        } md:hidden overflow-hidden transition-max-height duration-300 ease-in-out`}
+      >
         <Link
           to="/"
           onClick={toggleMobileMenu}

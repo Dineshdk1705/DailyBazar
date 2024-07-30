@@ -79,9 +79,9 @@ const ProductCard = ({
         </div>
         <div className="hover:cursor-pointer">
           {wishlistToggle ? (
-            <IoIosHeart size={18} color="red" onClick={handleRemoveWishlist} />
+            <IoIosHeart size={23} color="red" onClick={handleRemoveWishlist} />
           ) : (
-            <IoIosHeartEmpty size={18} onClick={handleAddWishlist} />
+            <IoIosHeartEmpty size={23} onClick={handleAddWishlist} />
           )}
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromWishlist } from "../store/slices/wishlistSlice";
 import { addCartItem, removeCartItem } from "../store/slices/cartSlice";
@@ -8,6 +8,10 @@ const Wishlist = () => {
   const wishlistItem = useSelector((state) => state.wishlistItem.wishlistItems);
   const cartIds = useSelector((state) => state.cartItem.cartIds);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const checkIdIsInCart = (id) => {
     const check = cartIds.includes(id);
@@ -47,12 +51,12 @@ const Wishlist = () => {
                 key={item.id}
                 className="bg-white mb-2 md:mb-0  border border-grey-500 md:border-none block md:table-row"
               >
-                <td className="p-1 md:border-b md:border-grey-500 text-left block md:table-cell">
+                <td className="hidden p-1 md:border-b md:border-grey-500 text-left md:table-cell">
                   <button
                     onClick={() => dispatch(removeFromWishlist(item?.id))}
                     className="ml-4 text-red-500"
                   >
-                    <MdDelete size={16} color="red" />
+                    <MdDelete size={23} color="red" />
                   </button>
                 </td>
                 <td className="p-2 md:border-b md:border-grey-500 text-left block md:table-cell">
@@ -64,39 +68,46 @@ const Wishlist = () => {
                   <span>{item.title}</span>
                 </td>
                 <td className="p-2 md:border-b md:border-grey-500  text-left block md:table-cell">
-                  {/* <span className="line-through">{item.price}</span>{" "} */}
                   <span className="">₹{item.price}</span>
                 </td>
                 <td className="p-2 md:border-b md:border-grey-500 text-left block md:table-cell">
                   In Stock
                 </td>
                 <td className="p-2 md:border-b md:border-grey-500 text-left block md:table-cell">
-                  {checkIdIsInCart(item.id) ? (
+                  <div className="flex items-center">
+                    {checkIdIsInCart(item.id) ? (
+                      <button
+                        onClick={() => dispatch(removeCartItem(item.id))}
+                        className="bg-red-500 text-white px-4 py-2 rounded"
+                      >
+                        Remove Cart
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() =>
+                          dispatch(
+                            addCartItem({
+                              id: item.id,
+                              title: item.title,
+                              price: item.price,
+                              brand: item.brand,
+                              image: item.image,
+                              quantity: 1,
+                            })
+                          )
+                        }
+                        className="bg-black text-white px-4 py-2 rounded"
+                      >
+                        Add to Cart
+                      </button>
+                    )}
                     <button
-                      onClick={() => dispatch(removeCartItem(item.id))}
-                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      onClick={() => dispatch(removeFromWishlist(item?.id))}
+                      className="ml-4 text-red-500 md:hidden block bg-gray-100 p-2 rounded-full"
                     >
-                      Remove Cart
+                      <MdDelete size={24} color="red" />
                     </button>
-                  ) : (
-                    <button
-                      onClick={() =>
-                        dispatch(
-                          addCartItem({
-                            id: item.id,
-                            title: item.title,
-                            price: item.price,
-                            brand: item.brand,
-                            image: item.image,
-                            quantity: 1,
-                          })
-                        )
-                      }
-                      className="bg-black text-white px-4 py-2 rounded"
-                    >
-                      Add to Cart
-                    </button>
-                  )}
+                  </div>
                 </td>
               </tr>
             ))}

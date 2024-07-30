@@ -6,11 +6,14 @@ import Loading from "./Loading";
 
 const ProductsList = () => {
   const dispatch = useDispatch();
-
   const cartIds = useSelector((state) => state.cartItem.cartIds);
   const wishlistIds = useSelector((state) => state.wishlistItem.wishlistIds);
   const productsData = useSelector((state) => state.productsItem.productsList);
   const isLoading = useSelector((state) => state.productsItem.loading);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     dispatch(fetchAllProducts());

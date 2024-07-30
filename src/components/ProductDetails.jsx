@@ -30,6 +30,10 @@ const ProductDetails = () => {
   );
   const isLoading = useSelector((state) => state.productDetailItem.loading);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const dispatch = useDispatch();
 
   const checkIdIsInCart = useCallback(
