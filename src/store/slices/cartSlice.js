@@ -1,34 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const findItemIndex = (state, action) =>
-  state.findIndex((cartItem) => cartItem.id === action.payload);
-
-// const findAddItemIndex = (state, action) => {
-//   state.findIndex((cartItem) => cartItem.id === action.payload.id);
-// };
+const findItemIndex = (state, id) =>
+  state.cartItems.findIndex((cartItem) => cartItem.id === id);
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: [],
-  loading: false,
-  error: "",
+  initialState: {
+    cartItems: [],
+    cartIds: [],
+    loading: false,
+    error: "",
+  },
   reducers: {
     addCartItem(state, action) {
-      state.push({ ...action.payload, quantity: 1 });
+      state.cartItems.push({
+        ...action.payload,
+        quantity: action.payload.quantity,
+      });
+      state.cartIds.push(action.payload.id);
     },
     removeCartItem(state, action) {
-      const existingItemIndex = findItemIndex(state, action);
-      state.splice(existingItemIndex, 1);
+      const existingItemIndex = findItemIndex(state, action.payload);
+      state.cartItems.splice(existingItemIndex, 1);
+      state.cartIds.splice(existingItemIndex, 1);
     },
     increaseQuantity(state, action) {
-      const existingItemIndex = findItemIndex(state, action);
-      console.log("incItem++ ", action, existingItemIndex);
-      state[existingItemIndex].quantity += 1;
+      const existingItemIndex = findItemIndex(state, action.payload);
+      state.cartItems[existingItemIndex].quantity += 1;
     },
     decreaseQuantity(state, action) {
-      const existingItemIndex = findItemIndex(state, action);
-      console.log("decItem-- ", action, existingItemIndex);
-      state[existingItemIndex].quantity -= 1;
+      const existingItemIndex = findItemIndex(state, action.payload);
+      state.cartItems[existingItemIndex].quantity -= 1;
     },
   },
 });

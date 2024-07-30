@@ -1,20 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const findItemIndex = (state, action) =>
-  state.findIndex((wishlistItem) => wishlistItem.id === action.payload);
+  state.wishlistItems.findIndex(
+    (wishlistItem) => wishlistItem.id === action.payload
+  );
 
 const wishlistSlice = createSlice({
   name: "wishlist",
-  initialState: [],
-  loading: false,
-  error: "",
+  initialState: {
+    wishlistItems: [],
+    wishlistIds: [],
+    loading: false,
+    error: "",
+  },
   reducers: {
     addToWishlist(state, action) {
-      state.push({ ...action.payload });
+      state.wishlistItems.push({ ...action.payload });
+      state.wishlistIds.push(action.payload.id);
     },
     removeFromWishlist(state, action) {
       const existingItemIndex = findItemIndex(state, action);
-      state.splice(existingItemIndex, 1);
+      state.wishlistItems.splice(existingItemIndex, 1);
+      state.wishlistIds.splice(existingItemIndex, 1);
     },
   },
 });

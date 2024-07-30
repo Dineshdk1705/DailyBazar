@@ -11,8 +11,8 @@ import {
 } from "react-router-dom";
 import Cart from "./components/Cart";
 import Wishlist from "./components/Wishlist";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+// import Login from "./components/Login";
+// import SignUp from "./components/SignUp";
 import ProductsList from "./components/ProductsList";
 import ProductDetails from "./components/ProductDetails";
 import { Provider } from "react-redux";
@@ -25,8 +25,8 @@ const router = createBrowserRouter(
       <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
+      {/* <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} /> */}
     </Route>
   )
 );

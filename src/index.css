@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* body {
-  @apply bg-gradient-to-r from-pink-200 via-white to-blue-500;
-} */
+body {
+  @apply font-roboto;
+}
 
 /* body {
   margin: 0;

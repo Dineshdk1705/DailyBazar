@@ -3,9 +3,8 @@ import Header from "./components/Header";
 
 function App() {
   return (
-    // bg-gradient-to-r from-pink-200 via-white to-blue-200
-    <div className="bg-gray-100">
-      <div className="px-5 md:px-36 py-4 w-screen">
+    <div className="bg-gray-50">
+      <div className="px-5 md:px-36 py-4 w-screen sticky top-0 bg-gray-50">
         <Header />
       </div>
       <Outlet />
