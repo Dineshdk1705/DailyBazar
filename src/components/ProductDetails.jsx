@@ -28,6 +28,7 @@ const ProductDetails = () => {
   const details = useSelector(
     (state) => state.productDetailItem.productDetailsData
   );
+  const isLoading = useSelector((state) => state.productDetailItem.loading);
 
   const dispatch = useDispatch();
 
@@ -86,7 +87,7 @@ const ProductDetails = () => {
     }
   };
 
-  if (!details) {
+  if (isLoading) {
     return (
       <div>
         <Loading />

@@ -20,7 +20,7 @@ const ProductCard = ({
   inCart,
   inWishlist,
 }) => {
-  const [wishlistToggle, setWishlistToggle] = useState(false);
+  const [wishlistToggle, setWishlistToggle] = useState(inWishlist);
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -32,7 +32,7 @@ const ProductCard = ({
   };
 
   const handleAddWishlist = () => {
-    setWishlistToggle(!wishlistToggle);
+    setWishlistToggle(true);
     dispatch(
       addToWishlist({
         id,
@@ -45,7 +45,7 @@ const ProductCard = ({
   };
 
   const handleRemoveWishlist = () => {
-    setWishlistToggle(!wishlistToggle);
+    setWishlistToggle(false);
     dispatch(removeFromWishlist(id));
   };
 
@@ -78,7 +78,7 @@ const ProductCard = ({
           </div>
         </div>
         <div className="hover:cursor-pointer">
-          {inWishlist ? (
+          {wishlistToggle ? (
             <IoIosHeart size={18} color="red" onClick={handleRemoveWishlist} />
           ) : (
             <IoIosHeartEmpty size={18} onClick={handleAddWishlist} />
