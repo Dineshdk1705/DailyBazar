@@ -88,14 +88,14 @@ const ProductCard = ({
       <div className="flex justify-between mt-2">
         {!inCart ? (
           <button
-            className="bg-blue-500 text-white px-2 py-1 text-xs rounded-md hover:bg-blue-600"
+            className="bg-blue-500 w-full text-white px-2 py-1 text-xs rounded-md hover:bg-blue-600"
             onClick={handleAddToCart}
           >
             Add to Cart
           </button>
         ) : (
           <button
-            className="bg-red-500 text-white px-2 py-1 text-xs rounded-md hover:bg-red-600"
+            className="bg-red-500 w-full text-white px-2 py-1 text-xs rounded-md hover:bg-red-600"
             onClick={handleRemoveFromCart}
           >
             Remove from Cart
